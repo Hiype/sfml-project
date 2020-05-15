@@ -1,0 +1,27 @@
+if (car.getPosition().x < pickup.getPosition().x + 64 &&
+				car.getPosition().x + 48 > pickup.getPosition().x &&
+				car.getPosition().y < pickup.getPosition().y + 64 &&
+				48 + car.getPosition().y > pickup.getPosition().y)
+			{
+				pickup.setPosition(10000000.f, 10000000000.f);
+				currentCheckpoints++;
+				std::cout << currentCheckpoints << "Current checkpoints\n";
+			}
+			if (car.getPosition().x < pickup2.getPosition().x + 64 &&
+				car.getPosition().x + 48 > pickup2.getPosition().x &&
+				car.getPosition().y < pickup2.getPosition().y + 64 &&
+				48 + car.getPosition().y > pickup2.getPosition().y)
+			{
+				pickup2.setPosition(10000000.f, 10000000000.f);
+				currentCheckpoints++;
+				std::cout << currentCheckpoints << "Current checkpoints\n";
+			}
+			if (car.getPosition().x < pickup3.getPosition().x + 64 &&
+				car.getPosition().x + 48 > pickup3.getPosition().x &&
+				car.getPosition().y < pickup3.getPosition().y + 64 &&
+				48 + car.getPosition().y > pickup3.getPosition().y)
+			{
+				pickup3.setPosition(10000000.f, 10000000000.f);
+				currentCheckpoints++;
+				std::cout << currentCheckpoints << "Current checkpoints\n";
+			}

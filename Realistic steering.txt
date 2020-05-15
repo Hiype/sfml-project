@@ -1,0 +1,43 @@
+	sf::Vector2f carLocation;
+	float carHeading;
+	float carSpeed;
+	float steerAngle;
+	float wheelBase = 50; //distance between wheels
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))//up
+			{
+				carSpeed += 0.05;
+				std::cout << "Pressed W; Car speed : " << carSpeed << std::endl;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))//down
+			{
+				carSpeed -= 0.05;
+				std::cout << "Pressed S; Car speed : " << carSpeed << std::endl;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))//left
+			{
+				steerAngle += 0.01;
+				std::cout << "Pressed A; Steer angle : " << steerAngle << std::endl;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))//right
+			{
+				steerAngle -= 0.01;
+				std::cout << "Pressed D; Steer angle : " << steerAngle << std::endl;
+			}
+
+			sf::Vector2f frontWheel = carLocation + wheelBase / 2 * sf::Vector2f(cos(carHeading), sin(carHeading));
+			std::cout << "Front wheel X : " << frontWheel.x << " Wheel Y : " << frontWheel.y << std::endl;
+			sf::Vector2f backWheel = carLocation - wheelBase / 2 * sf::Vector2f(cos(carHeading), sin(carHeading));
+			std::cout << "Back wheel X : " << backWheel.x << " Wheel Y : " << backWheel.y << std::endl;
+
+			backWheel += carSpeed * dt.asSeconds() * sf::Vector2f(cos(carHeading), sin(carHeading));
+			std::cout << "AFTERRR     Back wheel X : " << backWheel.x << " Wheel Y : " << backWheel.y << std::endl;
+			frontWheel += carSpeed * dt.asSeconds() * sf::Vector2f(cos(carHeading + steerAngle), sin(carHeading + steerAngle));
+			std::cout << "AFTER       Front wheel X : " << frontWheel.x << " Wheel Y : " << frontWheel.y << std::endl;
+
+			carLocation = (frontWheel + backWheel) / 2.0f;
+			std::cout << "Car location X : " << carLocation.x << " Location Y : " << carLocation.y << std::endl;
+			carHeading = atan2(frontWheel.y - backWheel.y, frontWheel.x - backWheel.x);
+			std::cout << "Car heading : " << carHeading << std::endl;
+
+			sprite.move(carLocation);
